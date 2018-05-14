@@ -1,0 +1,27 @@
+##### Crear nodo y minar #####
+
+# docker run -d --name node1 ethereum/client-go --rpcaddr 0.0.0.0 
+# docker exec -it node1 sh
+
+/ # vi genesis.json
+/ # geth init genesis.json --datadir node1/
+
+/ # geth --datadir node1/ --networkid 1 console --port 30302
+> personal.newAccount()
+ 
+/ # geth --datadir node1/ --mine --networkid 1 console --port 30302
+
+
+##### Despliegue de contrato #####
+
+$ solc -o . --bin --abi simple.sol
+# Editar los ficheros y crearlos dentro del docker
+
+> loadScript("node1/CertToken.abi")
+> loadScript("node1/CertToken.bin")
+
+
+##### Conectar otro nodo #####
+
+/ # geth --datadir node2 --networkid 98765 --port 30304 --bootnodes "enode://fd825cf9a9cdaf77523e22fa980d51c5321e11b98cdd36f688a1c53212275d89c22204248da8e50d2b00e7e1bb5ffd7d92202518b683edaf42e37e941d7b2c3d@172.17.0.2:30302" console
+> admin.peers
