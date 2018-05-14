@@ -12,6 +12,6 @@ docker image rm ethereum-network-node
 
 ### Creating and running new image ###     ----Edita el Dockerfile para que el coja la carpeta node adecuada (pendiente de automatizar)
 docker build -t ethereum-network-node .
-docker run -d ethereum-network-node --rpcaddr 0.0.0.0 --name "$1" 
-docker run -d ethereum-network-node --rpcaddr 0.0.0.0 --name "$2" 
+docker run -d --name "$1"  ethereum-network-node --rpcaddr 0.0.0.0
+docker run -d --name "$2"  ethereum-network-node --rpcaddr 0.0.0.0
 docker exec -it "$1" sh
