@@ -1,2 +1,2 @@
-docker_image/ethash/*
+docker_image/.ethash/*
 **/keystore/*
