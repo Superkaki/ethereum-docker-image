@@ -8,9 +8,5 @@ MAINTAINER Name <inaki.seco@opendeusto.es>
 EXPOSE 30303
 
 # Copy nedeed files
-COPY /docker_image /
-
-#RUN geth account new --datadir /node1 --password /node1/keystore/passwd
-#RUN geth init genesis.json --datadir node1/ --password /node1/keystore/passwd
-#RUN geth account new --datadir node1/ --
-#RUN geth --mine --networkid 1 console --datadir node1/ --port 30302
+COPY /docker_image/ /
+COPY /ethash/ root/.ethash/
