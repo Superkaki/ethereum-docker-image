@@ -20,6 +20,7 @@ do
     echo Running node "node$counter"
     docker run -d --name "node$counter"  ethereum-network-node --rpcaddr 0.0.0.0
     gnome-terminal --tab -e "docker exec -it 'node$counter' sh"
+    #gnome-terminal --tab -e "docker exec -it 'node$counter' sh run.sh '$counter'"
     ((counter++))
 done
 
