@@ -1,19 +1,20 @@
 
-# ethereum-docker-image
-
 This repository contains the scripts to create a ethereum node in a docker container easily.
+
+# ethereum-docker-image
 
 It's provided a script 'build.sh' which is used for everything:
 
-| Command | Description |
+| Parameter | Description |
 | ----- | ---- |
 | *start* | Creates a new docker image from ethereum/client-go named ethereum-network-node |
 | *restart* | Removes the previous image and recreates it again |
-| N | Starts N nodes, where N is a number, and run theirs command line in a terminal |
+| N | Starts N nodes, where N is a number, and run theirs JavaScript command line in a new terminal |
 | *close* | Closes all the existing nodes of ethereum-network-node image |
 | *remove* | Removes the ethereum-network-node image |
 
 ## Use example
+#### Docker image and first nodes
 
 First of all we need to create the docker image of a ethereum node, to do that run the next command:
 ```
@@ -27,20 +28,22 @@ After creating the docker image it's ready to boot some nodes and start to mine 
 $ sudo ./build.sh 2
 ```
 
-This command will create a *node1* and a *node2*.
+This command will create a node1 and a node2.
 
-Once you have them created, go to the *node1*'s JavaScript command line and run the script named `run.sh` which is inside the image, indicating as first parameter the --*datadir*, in other words, the name of the folder where you want to save the keystore and files from the chain. This script will create an account, set it as etherbase, initializate the genesis block, start to mine it and open a web3 command line for that node:
+#### Run genesis block and start mining
+Once you have them created, go to the node1's JavaScript command line and run the script named `run.sh` which is inside the image, indicating as first parameter the --*datadir*, in other words, the name of the folder where you want to save the keystore and files from the chain. This script will create an account (whose password is *node*, you can modified this in *passwd* file), set it as etherbase, initializate the genesis block, start to mine it and open a web3 command line for that node:
 ```
 / #./run.sh node1
 ```
 First time you run it takes like 5 minutes to start mining because of the creation of DAG file, I recomend you to insert this file into the docker image so that it's no needed next time.
 
-Now we got the chain created we want the *node2* to start to mine that same blockchain so we need to get the *enode* from the *node1*. Tpye `admin.nodeInfo` in the *node1*'s web3 command line to get information from this node:
+#### Add a new peer to the network
+Now we got the chain created we want the node2 to start to mine that same blockchain so we need to get the *enode* from the node1. Tpye `admin.nodeInfo` in the node1's web3 command line to get information from this node:
 ```
 > admin.nodeInfo
 ```
 
-Got something like this, take note of the enode hash:
+Got something like this, take note of the enode id:
 
 ```
 {
@@ -71,7 +74,7 @@ Got something like this, take note of the enode hash:
 }
 ```
 
-Next, and last, step is running the same script in the *node2*'s JavaScript command line, now with a second parameter:
+Next, and last, step is running the same script in the node2's JavaScript command line, now with the node1's id as second parameter:
 ```
 / #./run.sh node2 fdf2529b088a1385db6675c06f0008c67db3895232e5bf69d7ef720cc67b08e3c0a7e63d175d40160f21c103140e27656d2f07c655a356ab1030470f051392c1
 ```

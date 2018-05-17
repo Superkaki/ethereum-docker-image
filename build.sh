@@ -20,7 +20,7 @@ function removeImage() {
     docker image rm ethereum-network-node
 }
 
-
+# TODO: functin checkAndInstall {}
 
 
 
