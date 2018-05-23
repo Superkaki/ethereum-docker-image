@@ -44,7 +44,7 @@ case $1 in
             #### Creating image ###
             createImage
         else
-            echo "The image does not exist yet, create it with 'sudo ./build start'"
+            createImage
         fi
         ;;
 
