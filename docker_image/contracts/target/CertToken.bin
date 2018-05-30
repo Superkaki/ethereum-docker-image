@@ -12,7 +12,7 @@ function(e, contract){
 
     } else {
       console.log("Contract mined! Address: " + contract.address);
-      console.log(JSON.stringify(contract));
+      # console.log(JSON.stringify(contract));
     }
 
   }
