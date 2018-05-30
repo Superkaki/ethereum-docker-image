@@ -64,13 +64,16 @@ case $1 in
         echo Creating "$1" nodes
         ### Running nodes ###
         counter=1
+        closeDockers
         while [ $counter -le $1 ]
         do
-            if [[ -n $( docker ps -q -f name="node$counter" ) ]]; then
-            echo "The node$counter already exists, let's remove it"
-                docker stop "node$counter"
-                docker rm "node$counter"
-            fi
+            # Remove only the node is gonna be created
+            #if [[ -n $( docker ps -q -f name="node$counter" ) ]]; then
+            #echo "The node$counter already exists, let's remove it"
+            #    docker stop "node$counter"
+            #    docker rm "node$counter"
+            #fi
+            
             echo Creating "node$counter"
             docker run -d --name "node$counter"  ethereum-network-node --rpcaddr 0.0.0.0
             echo Running node "node$counter"
