@@ -9,4 +9,4 @@ EXPOSE 30303
 
 # Copy nedeed files
 COPY /docker_image/ /
-VOLUME /ethash/ root/.ethash/
+COPY /ethash/* root/.ethash/
