@@ -25,6 +25,11 @@ function removeImage() {
 
 
 case $1 in
+    compile)
+        echo Compiling
+        solc -o ./docker_image/contracts/target/ --bin --abi ../certificates-ethereum/token/contracts/Certifikate.sol
+        ;;
+
     start)
         echo starting 
         #### Creating image ###
