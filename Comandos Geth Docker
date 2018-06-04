@@ -17,8 +17,8 @@
 $ solc -o . --bin --abi simple.sol
 # Editar los ficheros y crearlos dentro del docker
 
-> loadScript("node1/CertToken.abi")
-> loadScript("node1/CertToken.bin")
+> loadScript("node1/Certifikate.abi")
+> loadScript("node1/Certifikate.bin")
 
 
 ##### Conectar otro nodo #####
